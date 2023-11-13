@@ -1,47 +1,57 @@
-# Astro Starter Kit: Minimal
+This repo is a reproduction of the problem with Qwik's <Slot> component and when children are added in an Astro file.
 
-```sh
-npm create astro@latest -- --template minimal
+If we normally try to pass in children of a JSX component in an Astro file, it would be done like this:
+
+inside `MyReactComponent`:
+
+```tsx
+import React from "react";
+
+const MyReactComponent = ({ children }) => {
+  return <div>{children}</div>;
+};
+
+export default MyReactComponent;
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+in `index.astro`
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+```tsx
+---
+import MyReactComponent from './MyReactComponent.jsx';
+---
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+<MyReactComponent>
+  <h1>Hello, world!</h1>
+  <p>This is a paragraph.</p>
+</MyReactComponent>
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+If we do the same in Qwik:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```tsx
+import { Slot } from "@builder.io/qwik";
 
-Any static assets, like images, can be placed in the `public/` directory.
+export const MyQwikComponent = (props) => {
+  return (
+    <div {...props}>
+      <Slot />
+    </div>
+  );
+};
+```
 
-## 🧞 Commands
+**index.astro**
 
-All commands are run from the root of the project, from a terminal:
+```
+---
+import MyQwikComponent from './MyQwikComponent.tsx';
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+<MyQwikComponent>
+  <h1>Hello, world!</h1>
+  <p>This is a paragraph.</p>
+</MyQwikComponent>
+```
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This causes an error, and will not render anything.
