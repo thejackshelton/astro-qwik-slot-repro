@@ -1,0 +1,68 @@
+{
+  "manifestHash": "lgwah",
+  "symbols": {
+    "s_0VxqBz4YBRU": {
+      "origin": "components/qwik-component.tsx",
+      "displayName": "MyQwikComponent_component",
+      "canonicalFilename": "s_0vxqbz4ybru",
+      "hash": "0VxqBz4YBRU",
+      "ctxKind": "function",
+      "ctxName": "component$",
+      "captures": false,
+      "loc": [
+        97,
+        169
+      ]
+    }
+  },
+  "mapping": {
+    "s_0VxqBz4YBRU": "q-afc3d571.js"
+  },
+  "bundles": {
+    "q-1214fbe7.js": {
+      "size": 4406,
+      "dynamicImports": [
+        "q-afc3d571.js"
+      ],
+      "origins": [
+        "node_modules/@builder.io/qwik/core.min.mjs",
+        "src/components/qwik-component.tsx"
+      ]
+    },
+    "q-afc3d571.js": {
+      "size": 146,
+      "imports": [
+        "q-1214fbe7.js"
+      ],
+      "origins": [
+        "src/s_0vxqbz4ybru.js"
+      ],
+      "symbols": [
+        "s_0VxqBz4YBRU"
+      ]
+    },
+    "q-d684f57a.js": {
+      "size": 66,
+      "imports": [
+        "q-1214fbe7.js"
+      ]
+    }
+  },
+  "injections": [],
+  "version": "1",
+  "options": {
+    "target": "client",
+    "buildMode": "production",
+    "entryStrategy": {
+      "type": "hook"
+    }
+  },
+  "platform": {
+    "qwik": "1.2.17",
+    "vite": "",
+    "rollup": "3.29.4",
+    "env": "node",
+    "os": "linux",
+    "node": "18.16.1"
+  }
+}

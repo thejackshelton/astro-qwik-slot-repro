@@ -1,5 +1,6 @@
 ---
-import { MyReactComponent } from '../components/react-component'
+// import { MyReactComponent } from '../components/react-component'
+import { MyQwikComponent } from '../components/qwik-component'
 ---
 
 <html lang="en">
@@ -12,14 +13,15 @@ import { MyReactComponent } from '../components/react-component'
 	</head>
 	<body>
 		<h1>Astro</h1>
-<!-- 		
+		
 		<MyQwikComponent>
 			<p>I am a Qwik slot child!</p>
-		</MyQwikComponent> -->
+			<p>another child!</p>
+		</MyQwikComponent>
 		
 		<!-- works if qwik integration is removed from astro config -->
-		<MyReactComponent>
+		<!-- <MyReactComponent>
 			<p>I am a React children child!</p>
-		</MyReactComponent>
+		</MyReactComponent> -->
 	</body>
 </html>
